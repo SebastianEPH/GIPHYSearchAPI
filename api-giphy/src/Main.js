@@ -1,21 +1,35 @@
 import React, {useState} from "react";
 import Search from './component/Search'
+import View from './component/View'
 
 const Main = () => {
 
-    const [categories, setCategories] = useState(['one push ', 'dragon ball', 'naturo '])
+    const [search , setSearch] =  useState([])
+    console.log('searsh principal 1')
+    console.log(search)
+    console.log('search principal 1')
+
 
     return (
-        <div className="container">
-            <Search setCategories = {setCategories}/>
-            <h1>
-                <ol>
-                    {categories.map((ca, index)=><li key={ca+index}>{ca}</li>)}
-                </ol>
-            </h1>
+        <div className="container border border-danger">
+           <Search  setSearch={setSearch}/>
+                {search.map( (word, index)  => (
+                    <View
+                        key={word+index}
+                        word={word}
+                        search={search}
+                        setSearch={setSearch}
+                        />
+                    ))
+                }
         </div>
     )
 }
 
 
 export default  Main;
+
+//<GifGrid
+//    key={ category }
+//    category={ category }
+///>

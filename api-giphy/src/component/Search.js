@@ -1,46 +1,47 @@
 import {useState} from "react";
 import propTypes from 'prop-types'
 
-const Search = ({setCategories})=>{
+const Search = ({setSearch})=>{
 
     const [inputValue , setInputValue] = useState('')
 
-    function handleInputChange(e){
-        //setText(inputValue + e.nativeEvent.data)
-        ///console.log(inputValue + e.nativeEvent.data)
+    const handleInputChange = (e)=> {
         console.log(e.target.value)
         setInputValue(e.target.value)
 
     }
-    function handleSubmit(e){
+    const handleSubmit = (e)=>{
         e.preventDefault()
-        //console.log(e)
-        //console.log(categories)
-        // verifica si el recuadro está vacio
         if(inputValue.trim().length <= 0){
-            console.log('el texto está vacio')
+            console.log('el texto está vacio.,.,.,,...,')
         }else{
-            setCategories(cats =>([...cats, inputValue]));
+            setSearch(cats =>[ inputValue, ...cats]);
             setInputValue('')
-            //e.target.value = 'vacio '
-
+            e.target.reset()
         }
     }
 
+    const handleClearAll = ()=>{
+        setSearch([])
+        console.log('click delete all')
+    }
     return(
-     <form onSubmit={handleSubmit}>
-         <h2>Search</h2>
-         <input
-             onChange={handleInputChange}
-             type="text"
-             defaultValue={inputValue}
-
-         />
-     </form>
+     <>
+         <form onSubmit={handleSubmit}>
+             <h2>Search</h2>
+             <input
+                 onChange={handleInputChange}
+                 type="text"
+                 defaultValue={inputValue}
+             />
+         </form>
+         <button onClick={handleClearAll}>
+             Clean All
+         </button>
+     </>
     )
 }
 Search.propTypes = {
-    setCategories: propTypes.func.isRequired
+    setSearch: propTypes.func.isRequired
 }
-
 export default Search;
