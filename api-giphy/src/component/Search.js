@@ -27,17 +27,22 @@ const Search = ({setSearch})=>{
     }
     return(
      <>
-         <form onSubmit={handleSubmit}>
-             <h2>Search</h2>
-             <input
-                 onChange={handleInputChange}
-                 type="text"
-                 defaultValue={inputValue}
-             />
-         </form>
-         <button onClick={handleClearAll}>
-             Clean All
-         </button>
+         <div className="row m-2 p-2">
+             <h2 >Search</h2>
+             <form className="col-sm-11 " onSubmit={handleSubmit}>
+                 <input
+                     className="form-control "
+                     onChange={handleInputChange}
+                     type="text"
+                     placeholder="write a word"
+                     defaultValue={inputValue}
+                 />
+             </form>
+             <button className="btn btn-danger col-sm-1" onClick={handleClearAll}>
+                 Clean All
+             </button>
+         </div>
+
      </>
     )
 }
