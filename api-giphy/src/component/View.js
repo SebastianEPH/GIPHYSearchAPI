@@ -34,8 +34,9 @@ const View = ({word, search, amount, setSearch, amountSearch, setAmountSearch})=
         let newSearch = []
         let newAmount = []
         search.forEach((p, index)=>(p!==word)?
-                newSearch.push(p) &&
-                newAmount.push(amountSearch[index]):false
+            newSearch.push(p) &&
+            newAmount.push(amountSearch[index])
+            :false
         )
         setAmountSearch(newAmount)
         setSearch(newSearch)
@@ -61,7 +62,12 @@ const View = ({word, search, amount, setSearch, amountSearch, setAmountSearch})=
 View.PropType={
     word: propTypes.string.isRequired,
     search:propTypes.array.isRequired,
-    setSearch:propTypes.func.isRequired
+    setSearch:propTypes.func.isRequired,
+    amount:propTypes.string.isRequired,
+    amountSearch: propTypes.array.isRequired,
+    setAmountSearch: propTypes.func.isRequired
+
+
 }
 export default View;
 

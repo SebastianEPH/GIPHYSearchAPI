@@ -1,22 +1,18 @@
-import {useEffect, useState} from "react";
+import { useState} from "react";
 import propTypes from 'prop-types'
 
 const Search = ({setSearch, setAmountSearch})=>{
 
     const [inputValue , setInputValue] = useState('')
-    const [inputRange, setInputRange ] =  useState('5')
-
-    //useEffect(()=>{
-    //    setInputRange()
-    //},[])
+    const [inputRange, setInputRange ] =  useState('3')
 
     const handleInputChange = (e)=> {
-        console.log(e.target.value)
+        //console.log(e.target.value)
         setInputValue(e.target.value)
 
     }
     const handleInputRange = (e)=>{
-        console.log(e.target.value)
+        //console.log(e.target.value)
         setInputRange(e.target.value)
     }
     const handleSubmit = (e)=>{
@@ -28,9 +24,20 @@ const Search = ({setSearch, setAmountSearch})=>{
             console.log('search antes de dar valores ')
             console.log(inputRange)
             console.log(inputValue)
-            setSearch(cats =>[ inputValue, ...cats]);
-            // se va a verificar si el texto se repite
-            setAmountSearch(cats =>[ inputRange, ...cats]);
+
+            setSearch(value =>{
+                let isEcual = false
+
+                // verifica si el texto se repite
+                value.forEach(v=>v===inputValue? isEcual= true: false)
+
+                // solo si el texto no se repite guardará la palabra
+                if(!isEcual){
+                    setAmountSearch(amount =>[ inputRange, ...amount]);
+                    return([ inputValue, ...value])
+                }else{return([...value])}
+            });
+
             setInputValue('')
             e.target.reset()
         }
@@ -39,7 +46,6 @@ const Search = ({setSearch, setAmountSearch})=>{
     const handleClearAll = ()=>{
         setSearch([])
         setAmountSearch([])
-        console.log('click delete all')
     }
 
     return(
@@ -63,11 +69,11 @@ const Search = ({setSearch, setAmountSearch})=>{
                  </span>
                      <input onChange={handleInputRange} type="range" className=" form-range px-1" defaultValue={inputRange} min="1" max="50" step="1"/>
                  </form>
-
          </div>
     )
 }
 Search.propTypes = {
-    setSearch: propTypes.func.isRequired
+    setSearch: propTypes.func.isRequired,
+    setAmountSearch: propTypes.func.isRequired
 }
 export default Search;

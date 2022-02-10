@@ -30,11 +30,4 @@ const Main = () => {
         </div>
     )
 }
-
-
 export default  Main;
-
-//<GifGrid
-//    key={ category }
-//    category={ category }
-///>
