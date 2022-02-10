@@ -13,13 +13,15 @@ import {
 
 
 function Routing() {
+
+    const nameRepository = "GIPHYSearchAPI"
+
   return (
       <BrowserRouter>
           <Navbar/>
           <Routes>
-              <Route path="/" exact element={
-                <Main/>
-              }/>
+              <Route path="/" exact element={<Main/>}/>
+              <Route path={`/${nameRepository}/`} exact element={<Main/>}/> {/*Only Github pages */}
               {/*<Route path="/about" element={*/}
               {/*      <h1>acerca de???  </h1>*/}
               {/*}/>*/}
