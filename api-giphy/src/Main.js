@@ -6,14 +6,14 @@ const Main = () => {
 
     const [search , setSearch] =  useState([])
     const [amountSearch, setAmountSearch] = useState([])
-    console.log('searsh principal 1')
-    console.log(search)
-    console.log(amountSearch)
-    console.log('search principal 1')
+    // console.log('searsh principal 1')
+    // console.log(search)
+    // console.log(amountSearch)
+    // console.log('search principal 1')
 
 
     return (
-        <div className="container border border-danger">
+        <div className="container ">
            <Search  setSearch={setSearch} setAmountSearch={setAmountSearch}/>
                 {search.map( (word, index)  => (
                     <View

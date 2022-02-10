@@ -7,23 +7,16 @@ const Search = ({setSearch, setAmountSearch})=>{
     const [inputRange, setInputRange ] =  useState('3')
 
     const handleInputChange = (e)=> {
-        //console.log(e.target.value)
         setInputValue(e.target.value)
-
     }
     const handleInputRange = (e)=>{
-        //console.log(e.target.value)
         setInputRange(e.target.value)
     }
     const handleSubmit = (e)=>{
         e.preventDefault()
         if(inputValue.trim().length <= 0){
-            console.log('el texto está vacio.,.,.,,...,')
+            console.log('Input is empty')
         }else{
-
-            console.log('search antes de dar valores ')
-            console.log(inputRange)
-            console.log(inputValue)
 
             setSearch(value =>{
                 let isEcual = false
@@ -68,7 +61,7 @@ const Search = ({setSearch, setAmountSearch})=>{
                     {inputRange}
                  </span>
                      <input onChange={handleInputRange} type="range" className=" form-range px-1" defaultValue={inputRange} min="1" max="50" step="1"/>
-                 </form>
+             </form>
          </div>
     )
 }
