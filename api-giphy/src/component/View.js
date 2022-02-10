@@ -1,7 +1,7 @@
 import propTypes from 'prop-types'
 import React, {useEffect, useState} from "react";
 
-const View = ({word, search, setSearch})=>{
+const View = ({word, search, amount, setSearch, amountSearch, setAmountSearch})=>{
 
     useEffect(()=>{
         getGif()
@@ -9,8 +9,9 @@ const View = ({word, search, setSearch})=>{
 
     const [gif , setGif] =  useState([''])
 
+
     const getGif = async () =>{
-        const url = `https://api.giphy.com/v1/gifs/search?q=${encodeURI(word)}&limit=10&api_key=6iV1aQTJJpIFzStqFP8ZyrvDy617uyMy`;
+        const url = `https://api.giphy.com/v1/gifs/search?q=${encodeURI(word)}&limit=${amount}&api_key=6iV1aQTJJpIFzStqFP8ZyrvDy617uyMy`;
 
         console.log(url)
         console.log(word)
@@ -31,13 +32,18 @@ const View = ({word, search, setSearch})=>{
     }
     const handleClear = () =>{
         let newSearch = []
-        search.forEach(p=>p!==word?newSearch.push(p):false)
+        let newAmount = []
+        search.forEach((p, index)=>(p!==word)?
+                newSearch.push(p) &&
+                newAmount.push(amountSearch[index]):false
+        )
+        setAmountSearch(newAmount)
         setSearch(newSearch)
     }
 
     return (
         <div className="row justify-content-center">
-            <h1>Search: {word}</h1>
+            <h3 className='text-center'> {word}</h3>
             <button onClick={handleClear}> Clear Gif from <code>{word}</code></button>
              {gif.map((img, index)=>{
                  return(
